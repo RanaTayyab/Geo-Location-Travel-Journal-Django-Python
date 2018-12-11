@@ -1,0 +1,46 @@
+{% extends "posts/post_base.html" %}
+{% load cloudinary %}
+
+{% block pre_post_content %}
+<div class="col-md-4">
+    {% if request.user.is_authenticated %}
+    <div class="card">
+        <div class="card-body content">
+            <h5 class="card-title">Your Albums</h5>
+            <ul class="list-unstyled">
+                {% for member_group in get_user_groups %}
+                <li class="list-group-item li-with-bullet">
+                    <a href="{% url 'groups:single' slug=member_group.group.slug %}"></a>
+                </li>
+                {% endfor %}
+
+            </ul>
+        </div>
+    </div>
+    {% endif %}
+    <div class="card">
+        <div class="card-body content">
+            <h5 class="card-title">All Albums</h5>
+            <ul class="list-unstyled">
+
+                {% for other_group in get_other_groups %}
+                <li class="list-group-item li-with-bullet">
+                    <a href="{% url 'groups:single' slug=other_group.slug %}"></a>
+                </li>
+                {% endfor %}
+
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock pre_post_content %}
+
+{% block post_content %}
+    <div class="col-md-8">
+
+        {% for post in post_list %}
+            {% include "posts/_post.html" %}
+        {% endfor %}
+
+    </div>
+{% endblock post_content %}

@@ -1,0 +1,27 @@
+{% extends "index1.html" %}
+{% load static%}
+{% load staticfiles %}
+{% load bootstrap4 %}
+{% block content %}
+
+<div class="container">
+<div class="row">
+<div class="col-md-6 img">
+  <img src="{% static 'img/prof1.png'%}"  alt="" class="img-rounded" width="300px">
+</div>
+<div class="col-md-6 details">
+  <blockquote>
+    <h3>User Profile Details</h3>
+    <h4> Name : {{ user.username }}</h4>
+
+    <small><cite title="Source Title">Age : 22  <i class="icon-map-marker"></i></cite></small>
+        <small><cite title="Source Title">City: Lahore  <i class="icon-map-marker"></i></cite></small>
+    <small><cite title="Source Title">Country : Pakistan  <i class="icon-map-marker"></i></cite></small>
+  </blockquote>
+  <h5>
+    Email Credentials: {{user.email}}
+  </h5>
+</div>
+</div>
+</div>
+{% endblock content %}

@@ -1,0 +1,13 @@
+{% extends "groups/group_base.html" %}
+{% load bootstrap4 %}
+
+
+{% block group_content %}
+    <h4>Create a Custom Album</h4>
+
+    <form action="{% url 'groups:create' %}" method="POST" id="groupForm">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        <button type="submit" class="btn btn-dark btn-lg">Create</button>
+    </form>
+{% endblock group_content %}

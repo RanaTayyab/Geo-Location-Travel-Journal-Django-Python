@@ -1,0 +1,118 @@
+{% load cloudinary %}
+
+<div class="post media">
+    <h3>{{post.message_html|safe}}</h3>
+    <div class="media-body">
+        <!-- <strong>{{post.user.username}}</strong> -->
+        <h5 class="media-heading">
+            <span class="username">
+                <a href="{% url 'posts:for_user' username=post.user.username %}">@{{post.user.username}}</a>
+            </span>
+            <time class="time">
+                <a href="{% url 'posts:single' username=post.user.username pk=post.pk %}">{{post.created_at}}</a>
+            </time>
+            {% if post.group %}
+			<span class="group-name">in <a href="#">{{post.group.name}}</a></span>
+
+      {% if post.profile_pic %}
+        <br><br>
+         {% cloudinary post.profile_pic.public_id className="my-class" height=400 width=400 %}
+      {% endif %}
+
+      {% if post.profile_pic.format %}
+
+ <br><br>
+ <h3>Video on Cloud</h3>
+      <video width="640" height="480" controls>
+        <source src="https://res.cloudinary.com/travel-journal-django/video/upload/v1544523155/cahshw7vmov4lqrky1cv.mp4" type="video/mp4">
+        <source src="movie.ogg" type="video/ogg">
+        Your browser does not support the video tag.
+      </video>
+
+      {% endif %}
+
+
+
+			{% endif %}
+        </h5>
+<br><br>
+        <h2>Star Rating</h2>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star checked"></span>
+        <span class="fa fa-star"></span>
+        <span class="fa fa-star"></span>
+<br><br>
+        <div class="media-footer">
+            {% if user.is_authenticated and post.user == user and not hide_delete %}
+            <a href="{% url 'posts:delete' pk=post.pk %}" title="delete" class="btn btn-simple btn-dark">
+                <span class="fas fa-times text-danger" aria-hidden="true"></span>
+                <span class="text-danger icon-label">Delete</span>
+            </a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<form method="POST" action="">{% csrf_token %}
+    {{ form.media }}
+    {{ form.as_p }}
+</form>
+
+
+<p><button onclick="geoFindMe()">Current Location points</button></p>
+<!-- <p><button onclick="initMap()">Show my location</button></p> -->
+<div id="out">
+</div>
+<br><br>
+
+<div id="mapid"></div>
+
+<div id="googleMap" style="width:100%;height:400px;"></div>
+
+<script>
+function myMap() {
+var mapProp= {
+    center:new google.maps.LatLng(51.508742,-0.120850),
+    zoom:5,
+};
+var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+}
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA-VYAD2I9CSOkBbaSFXE5Bs14oQWk02Yw&callback=myMap"></script>
+
+  <script type="text/javascript">
+
+
+
+    function geoFindMe() {
+      var output = document.getElementById("out");
+
+      if (!navigator.geolocation){
+        output.innerHTML = "<p>Geolocation is not supported by your browser</p>";
+        return;
+      }
+
+      function success(position) {
+        var latitude  = position.coords.latitude;
+        var longitude = position.coords.longitude;
+
+        output.innerHTML = '<p>Latitude is ' + latitude + '° <br>Longitude is ' + longitude + '°</p>';
+
+        var img = new Image();
+        img.src = "https://maps.googleapis.com/maps/api/staticmap?center=" + latitude + "," + longitude + "&zoom=13&size=300x300&sensor=false";
+
+        output.appendChild(img);
+      }
+
+      function error() {
+        output.innerHTML = "Unable to retrieve your location";
+      }
+
+      output.innerHTML = "<p>Locating…</p>";
+
+      navigator.geolocation.getCurrentPosition(success, error);
+    }
+
+  </script>

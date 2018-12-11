@@ -1,0 +1,17 @@
+{% extends "index1.html" %}
+{% load bootstrap4 %}
+
+
+{% block content %}
+<div class="jumbotron jumbotron-fluid">
+<div class="container">
+    <h1>Sign Up</h1>
+    <form method="POST">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        <button type="submit" class="btn btn-dark">Sign Up</button>
+    </form>
+</div>
+</div>
+
+{% endblock content %}

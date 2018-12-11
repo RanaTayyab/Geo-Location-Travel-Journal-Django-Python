@@ -1,0 +1,25 @@
+{% extends "index1.html" %}
+{% load bootstrap4 %}
+{% block content %}
+
+<div class="container">
+<div class="row">
+  <br>
+<h2>Edit Profile:</h2>
+<br><br>
+<div class="container">
+    <form method="post">
+        {% csrf_token %}
+        {% bootstrap_form form  %}
+        <button type="submit">Submit</button>
+    </form>
+    <br>
+
+      <br>
+
+        <a class="nav-link btn btn-dark" href="{% url 'accounts:change_password' %}">Change Password</a>
+  <br><br><br>
+</div>
+</div>
+</div>
+{% endblock content %}

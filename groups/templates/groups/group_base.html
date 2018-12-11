@@ -1,0 +1,15 @@
+{% extends "index1.html" %}
+
+{% block content %}
+<div class="jumbotron jumbotron-fluid">
+<div class="container">
+    <div class="row">
+
+
+        {% block group_content %} {% endblock group_content %}
+        {% block postgroup %} {% endblock postgroup %}
+        {% block pregroup %} {% endblock pregroup %}
+    </div>
+
+</div></div>
+{% endblock content %}

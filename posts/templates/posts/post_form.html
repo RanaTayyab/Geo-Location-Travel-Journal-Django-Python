@@ -1,0 +1,13 @@
+{% extends "posts/post_base.html" %}
+{% load bootstrap4 %}
+{% load cloudinary %}
+
+
+{% block post_content %}
+    <h4>Add Picture to Album</h4>
+    <form id="postForm" action="{% url 'posts:create' %}" enctype="multipart/form-data" method="POST">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        <button type="submit" class="btn btn-dark btn-lg">Post</button>
+    </form>
+{% endblock post_content %}
