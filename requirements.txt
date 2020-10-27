@@ -8,7 +8,7 @@ channels==0.17.3
 cloudinary==1.14.0
 colorama==0.3.7
 contextlib2==0.5.4
-cryptography==2.3.1
+cryptography==3.2
 daphne==0.14.3
 defusedxml==0.5.0
 dj-database-url==0.4.1
