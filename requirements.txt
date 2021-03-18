@@ -37,7 +37,7 @@ otree-boto2-shim==0.3.2
 otree-core==0.0.0b1
 otree-save-the-change==1.1.3
 pbr==1.10.0
-Pillow==5.3.0
+Pillow==8.1.1
 psycopg2==2.7.5
 py==1.4.31
 pycparser==2.19
