@@ -57,7 +57,7 @@ termcolor==1.1.0
 Twisted==16.2.0
 txaio==2.5.1
 unicodecsv==0.14.1
-urllib3==1.24.1
+urllib3==1.26.5
 Werkzeug==0.14.1
 whitenoise==3.2.1
 ws4py==0.3.5
