@@ -54,7 +54,7 @@ requests-oauthlib==1.0.0
 schema==0.6.2
 six==1.10.0
 termcolor==1.1.0
-Twisted==16.2.0
+Twisted==21.2.0
 txaio==2.5.1
 unicodecsv==0.14.1
 urllib3==1.24.1
